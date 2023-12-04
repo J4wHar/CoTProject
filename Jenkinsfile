@@ -4,7 +4,7 @@ pipeline {
     environment {
         WILDFLY_HOME = '/opt/wildfly'
         M3_HOME = '/opt/maven'
-        PROJECT_DIR = 'smart_lighting'
+        PROJECT_DIR = 'server'
     }
     
     stages {
@@ -31,7 +31,7 @@ pipeline {
             steps {
                 dir(PROJECT_DIR) {
                     script {
-                        sh "$WILDFLY_HOME/bin/jboss-cli.sh --connect -u=\"admin\" -p=\"admin\"  --command=\"deploy --force target/smartlighting-1.0-SNAPSHOT.war\""
+                        sh "$WILDFLY_HOME/bin/jboss-cli.sh --connect -u=\"admin\" -p=\"admin\"  --command=\"deploy --force target/*.war\""
                       
                     }
                 }
