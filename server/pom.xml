@@ -88,14 +88,14 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${compiler-plugin.version}</version>
-			</plugin>
-			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>${war-plugin.version}</version>
+				<version>3.3.2</version>
 				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<archive>
+						<manifestEntries>
+							<Dependencies>jdk.unsupported</Dependencies>
+						</manifestEntries>
+					</archive>
 				</configuration>
 			</plugin>
 
