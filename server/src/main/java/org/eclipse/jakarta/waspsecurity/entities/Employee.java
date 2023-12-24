@@ -1,13 +1,14 @@
 package org.eclipse.jakarta.waspsecurity.entities;
 
+import jakarta.json.bind.annotation.JsonbVisibility;
 import jakarta.nosql.mapping.Column;
 import jakarta.nosql.mapping.Entity;
 import jakarta.nosql.mapping.Id;
+import jakarta.persistence.Table;
 import org.eclipse.jakarta.waspsecurity.FieldPropertyVisibilityStrategy;
 import org.eclipse.jakarta.waspsecurity.utils.Argon2Utils;
 
-import javax.json.bind.annotation.JsonbVisibility;
-import javax.persistence.Table;
+
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;

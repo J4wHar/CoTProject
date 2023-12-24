@@ -1,9 +1,10 @@
 package org.eclipse.jakarta.waspsecurity.security;
 
+import jakarta.json.bind.annotation.JsonbVisibility;
+import jakarta.validation.constraints.NotBlank;
 import org.eclipse.jakarta.waspsecurity.FieldPropertyVisibilityStrategy;
 
-import javax.json.bind.annotation.JsonbVisibility;
-import javax.validation.constraints.NotBlank;
+
 
 @JsonbVisibility(FieldPropertyVisibilityStrategy.class)
 public class Oauth2Request {

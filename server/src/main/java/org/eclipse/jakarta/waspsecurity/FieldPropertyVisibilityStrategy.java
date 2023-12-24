@@ -1,6 +1,7 @@
 package org.eclipse.jakarta.waspsecurity;
 
-import javax.json.bind.config.PropertyVisibilityStrategy;
+import jakarta.json.bind.config.PropertyVisibilityStrategy;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 

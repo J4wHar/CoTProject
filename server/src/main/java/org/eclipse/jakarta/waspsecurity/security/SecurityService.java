@@ -1,13 +1,14 @@
 package org.eclipse.jakarta.waspsecurity.security;
 
+import jakarta.inject.Inject;
+import jakarta.ws.rs.core.SecurityContext;
 import org.eclipse.jakarta.waspsecurity.Exceptions.*;
 import org.eclipse.jakarta.waspsecurity.entities.Employee;
 import org.eclipse.jakarta.waspsecurity.entities.Role;
 import org.eclipse.jakarta.waspsecurity.repositories.EmployeeRepository;
 import org.eclipse.jakarta.waspsecurity.utils.Argon2Utils;
 
-import javax.inject.Inject;
-import javax.ws.rs.core.SecurityContext;
+
 import java.security.Principal;
 import java.util.List;
 import java.util.Set;

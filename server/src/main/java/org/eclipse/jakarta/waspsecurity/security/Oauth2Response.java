@@ -1,9 +1,9 @@
 package org.eclipse.jakarta.waspsecurity.security;
 
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.json.bind.annotation.JsonbVisibility;
 import org.eclipse.jakarta.waspsecurity.FieldPropertyVisibilityStrategy;
 
-import javax.json.bind.annotation.JsonbProperty;
-import javax.json.bind.annotation.JsonbVisibility;
 
 @JsonbVisibility(FieldPropertyVisibilityStrategy.class)
 public class Oauth2Response {

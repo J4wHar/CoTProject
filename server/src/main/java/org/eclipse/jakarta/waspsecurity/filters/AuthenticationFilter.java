@@ -1,18 +1,19 @@
 package org.eclipse.jakarta.waspsecurity.filters;
 
+import jakarta.annotation.Priority;
+import jakarta.inject.Inject;
+import jakarta.security.enterprise.AuthenticationStatus;
+import jakarta.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;
+import jakarta.security.enterprise.authentication.mechanism.http.HttpMessageContext;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.ws.rs.Priorities;
+import jakarta.ws.rs.ext.Provider;
 import org.eclipse.jakarta.waspsecurity.repositories.UserTokenRepository;
 import org.eclipse.jakarta.waspsecurity.security.AccessToken;
 import org.eclipse.jakarta.waspsecurity.security.UserJWT;
 
-import javax.annotation.Priority;
-import javax.inject.Inject;
-import javax.security.enterprise.AuthenticationStatus;
-import javax.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;
-import javax.security.enterprise.authentication.mechanism.http.HttpMessageContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.Priorities;
-import javax.ws.rs.ext.Provider;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;

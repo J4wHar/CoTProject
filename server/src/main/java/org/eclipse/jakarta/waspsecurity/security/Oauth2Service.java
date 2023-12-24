@@ -1,16 +1,17 @@
 package org.eclipse.jakarta.waspsecurity.security;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Validator;
 import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.jakarta.waspsecurity.Exceptions.EmployeeNotAuthorizedException;
 import org.eclipse.jakarta.waspsecurity.entities.Employee;
 import org.eclipse.jakarta.waspsecurity.repositories.UserTokenRepository;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-import javax.validation.Validator;
+
 import java.time.Duration;
 import java.util.Optional;
 import java.util.Set;
