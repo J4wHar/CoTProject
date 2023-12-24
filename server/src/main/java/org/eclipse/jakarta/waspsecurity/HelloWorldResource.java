@@ -15,7 +15,6 @@ public class HelloWorldResource {
 		if ((name == null) || name.trim().isEmpty())  {
 			name = "world";
 		}
-
 		return new Hello(name);
 	}
 }
