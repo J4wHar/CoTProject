@@ -6,6 +6,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @ApplicationScoped
 @Path("/health")
@@ -14,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 public class TestResource {
 
     @GET
-    public String checkHealth() {
-        return "OK";
+    public Response checkHealth() {
+        return Response.ok("jawek behy!!").build();
     }
 }
