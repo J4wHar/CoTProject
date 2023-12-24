@@ -31,7 +31,7 @@ pipeline {
             steps {
                 dir(PROJECT_DIR) {
                     script {
-                        sh "$WILDFLY_HOME/bin/jboss-cli.sh --connect -u=\"admin\" -p=\"admin\"  --command=\"deploy --force target/waspsecurity.war\""
+                        sh "$WILDFLY_HOME/bin/jboss-cli.sh --connect -u=\"admin\" -p=\"admin\"  --command=\"deploy --force target/waspsecurity-1.0-SNAPSHOT.war\""
                       
                     }
                 }
