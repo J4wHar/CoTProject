@@ -17,7 +17,7 @@
 		<project.report.sourceEncoding>UTF-8</project.report.sourceEncoding>
 		<maven.compiler.release>17</maven.compiler.release>
 		<jakartaee-api.version>10.0.0</jakartaee-api.version>
-		<wildfly.version>27.0.1.Final</wildfly.version>
+		<wildfly.version>30.0.1.Final</wildfly.version>
 		<compiler-plugin.version>3.11.0</compiler-plugin.version>
 		<war-plugin.version>3.3.2</war-plugin.version>
 		<wildfly-plugin.version>4.1.0.Final</wildfly-plugin.version>
@@ -44,11 +44,6 @@
 			<version>${jakartaee-api.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-            <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-web-api</artifactId>
-            <version>8.0.0</version>
-        </dependency>
         <dependency>
             <groupId>org.eclipse.microprofile.config</groupId>
             <artifactId>microprofile-config-api</artifactId>
