@@ -38,4 +38,12 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            script {
+                // Add cleanup steps here
+                sh "rm -rf ${PROJECT_DIR}/target"
+            }
+        }
+    }
 }
