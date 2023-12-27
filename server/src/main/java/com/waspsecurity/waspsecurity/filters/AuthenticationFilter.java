@@ -1,21 +1,24 @@
 package com.waspsecurity.waspsecurity.filters;
 
+
 import com.waspsecurity.waspsecurity.repositories.UserTokenRepository;
 import com.waspsecurity.waspsecurity.security.AccessToken;
 import com.waspsecurity.waspsecurity.security.UserJWT;
 import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
+import jakarta.security.enterprise.AuthenticationStatus;
+import jakarta.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;
+import jakarta.security.enterprise.authentication.mechanism.http.HttpMessageContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.ws.rs.Priorities;
 import jakarta.ws.rs.ext.Provider;
-import jakarta.security.enterprise.AuthenticationStatus;
-import jakarta.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;
-import jakarta.security.enterprise.authentication.mechanism.http.HttpMessageContext;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 @Provider
 @Priority(Priorities.AUTHENTICATION)
@@ -23,10 +26,10 @@ import java.util.regex.Pattern;
 
 public class AuthenticationFilter implements HttpAuthenticationMechanism {
     private static final Pattern CHALLENGE_PATTERN = Pattern.compile("^Bearer *([^ ]+) *$", Pattern.CASE_INSENSITIVE);
-    private  static  final List NOT_SECURED_PREFIX=List.of("oauth2","signup") ;
+    private  static  final  List NOT_SECURED_PREFIX=List.of("oauth2","signup") ;
 
     @Inject
-    private UserTokenRepository repository;
+    UserTokenRepository repository;
 
     @Override
     public AuthenticationStatus validateRequest(HttpServletRequest request, HttpServletResponse response,

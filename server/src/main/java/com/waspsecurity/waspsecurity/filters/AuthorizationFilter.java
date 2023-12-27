@@ -1,6 +1,5 @@
 package com.waspsecurity.waspsecurity.filters;
 
-
 import jakarta.annotation.Priority;
 import jakarta.annotation.security.DenyAll;
 import jakarta.annotation.security.PermitAll;

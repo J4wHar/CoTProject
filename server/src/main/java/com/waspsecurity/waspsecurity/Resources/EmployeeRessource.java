@@ -34,8 +34,8 @@ public class EmployeeRessource {
     EmployeeRepository employeeRepository;
     @Inject
     Argon2Utils argon2Utils;
-    @GET
     @Secured
+    @GET
     @RolesAllowed("ADMIN")
     public List<Employee> findActiveEmployees() {
         return employeeRepository.findByArchived(false).collect(Collectors.toList());
