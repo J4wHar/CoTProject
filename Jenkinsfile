@@ -31,10 +31,18 @@ pipeline {
             steps {
                 dir(PROJECT_DIR) {
                     script {
-                        sh "$WILDFLY_HOME/bin/jboss-cli.sh --connect -u=\"admin\" -p=\"admin\"  --command=\"deploy --force target/waspsecurity-0.1-SNAPSHOT.war\""
+                        sh "$WILDFLY_HOME/bin/jboss-cli.sh --connect -u=\"admin\" -p=\"admin\"  --command=\"deploy --force target/waspsecurity-1.0-SNAPSHOT.war\""
                       
                     }
                 }
+            }
+        }
+    }
+    post {
+        always {
+            script {
+                // Add cleanup steps here
+                sh "rm -rf ${PROJECT_DIR}/target"
             }
         }
     }
