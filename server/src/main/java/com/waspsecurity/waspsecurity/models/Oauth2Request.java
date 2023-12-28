@@ -1,7 +1,8 @@
-package com.waspsecurity.waspsecurity.security;
+package com.waspsecurity.waspsecurity.models;
 
 
 import com.waspsecurity.waspsecurity.FieldPropertyVisibilityStrategy;
+import com.waspsecurity.waspsecurity.enums.GrantType;
 import jakarta.json.bind.annotation.JsonbVisibility;
 import jakarta.validation.constraints.NotBlank;
 

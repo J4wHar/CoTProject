@@ -2,8 +2,8 @@ package com.waspsecurity.waspsecurity.security;
 
 
 import com.waspsecurity.waspsecurity.Exceptions.EmployeeNotAuthorizedException;
-import com.waspsecurity.waspsecurity.entities.Employee;
-import com.waspsecurity.waspsecurity.entities.Role;
+import com.waspsecurity.waspsecurity.entities.User;
+import com.waspsecurity.waspsecurity.enums.Role;
 import com.waspsecurity.waspsecurity.repositories.EmployeeRepository;
 import com.waspsecurity.waspsecurity.utils.Argon2Utils;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -87,15 +87,15 @@ public class SecurityService {
 
     }
 
-    public Employee findBy(String email) {
+    public User findBy(String email) {
         return employeeRepository.findByEmail(email)
                 .orElseThrow(() -> new EmployeeNotAuthorizedException("Unauthorized"));
     }
 
-    public Employee findBy(String email, String password) {
+    public User findBy(String email, String password) {
         System.out.println("------------------------------------------------");
         System.out.println(employeeRepository.findById(email).toString());
-        final Employee user = employeeRepository.findById(email)
+        final User user = employeeRepository.findById(email)
                 .orElseThrow(() -> new EmployeeNotAuthorizedException("Unauthorized"));
         System.out.println(argon2Utils.check(user.getPassword() ,password.toCharArray()));
         if (argon2Utils.check(user.getPassword() ,password.toCharArray() )) {

@@ -1,4 +1,4 @@
-package com.waspsecurity.waspsecurity.entities;
+package com.waspsecurity.waspsecurity.models;
 
 
 public class PasswordUpdate {

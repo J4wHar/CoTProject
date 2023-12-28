@@ -1,7 +1,7 @@
 package com.waspsecurity.waspsecurity.repositories;
 
 
-import com.waspsecurity.waspsecurity.security.UserToken;
+import com.waspsecurity.waspsecurity.entities.UserToken;
 import jakarta.data.repository.CrudRepository;
 import jakarta.data.repository.Param;
 import jakarta.data.repository.Query;

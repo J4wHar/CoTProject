@@ -2,6 +2,7 @@ package com.waspsecurity.waspsecurity.entities;
 
 
 import com.waspsecurity.waspsecurity.FieldPropertyVisibilityStrategy;
+import com.waspsecurity.waspsecurity.enums.Role;
 import com.waspsecurity.waspsecurity.utils.Argon2Utils;
 import jakarta.json.bind.annotation.JsonbVisibility;
 import jakarta.nosql.Column;
@@ -15,15 +16,15 @@ import java.util.Set;
 @Entity
 @JsonbVisibility(FieldPropertyVisibilityStrategy.class)
 
-//@Table(name = "employees")
-public class Employee implements Serializable {
+
+public class User implements Serializable {
     @Id
     @Column("email")
     private String email;
-    @Column("forename")
-    private String forename;
-    @Column("surname")
-    private String surname;
+    @Column("firstName")
+    private String firstName;
+    @Column("lastName")
+    private String lastName;
     @Column("addressId")
     private String address_id;
     @Column("phoneNumber")
@@ -37,19 +38,19 @@ public class Employee implements Serializable {
     @Column
     private String created_on;
 
-    public Employee() {
+    public User() {
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getForename() {
-        return forename;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
     public String getAddress_id() {
@@ -80,12 +81,12 @@ public class Employee implements Serializable {
         this.email = email;
     }
 
-    public void setForename(String forename) {
-        this.forename = forename;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public void setAddress_id(String address_id) {
@@ -112,10 +113,10 @@ public class Employee implements Serializable {
         this.archived = archived;
     }
 
-    public Employee(String email, String forename, String surname, String address_id, String phoneNumber, String password, Set<Role> roles, boolean archived) {
+    public User(String email, String firstName, String lastName, String address_id, String phoneNumber, String password, Set<Role> roles, boolean archived) {
         this.email = email;
-        this.forename = forename;
-        this.surname = surname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.address_id = address_id;
         this.phoneNumber = phoneNumber;
         this.password = password;
@@ -127,21 +128,21 @@ public class Employee implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return Objects.equals(email, employee.email) && Objects.equals(forename, employee.forename) && Objects.equals(surname, employee.surname);
+        User user = (User) o;
+        return Objects.equals(email, user.email) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(email, forename, surname, address_id, phoneNumber, password, roles, archived);
+        return Objects.hash(email, firstName, lastName, address_id, phoneNumber, password, roles, archived);
     }
 
     @Override
     public String toString() {
         return "Employee{" +
                 "email='" + email + '\'' +
-                ", forename='" + forename + '\'' +
-                ", surname='" + surname + '\'' +
+                ", forename='" + firstName + '\'' +
+                ", surname='" + lastName + '\'' +
                 ", address_id='" + address_id + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", password='" + password + '\'' +

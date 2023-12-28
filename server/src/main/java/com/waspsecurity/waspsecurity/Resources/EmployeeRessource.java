@@ -3,8 +3,8 @@ package com.waspsecurity.waspsecurity.Resources;
 
 import com.waspsecurity.waspsecurity.Exceptions.EmployeeAlreadyExistsException;
 import com.waspsecurity.waspsecurity.Exceptions.EmployeeNotFoundException;
-import com.waspsecurity.waspsecurity.entities.Employee;
-import com.waspsecurity.waspsecurity.entities.PasswordUpdate;
+import com.waspsecurity.waspsecurity.entities.User;
+import com.waspsecurity.waspsecurity.models.PasswordUpdate;
 import com.waspsecurity.waspsecurity.filters.Secured;
 import com.waspsecurity.waspsecurity.repositories.EmployeeRepository;
 import com.waspsecurity.waspsecurity.utils.Argon2Utils;
@@ -24,7 +24,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
-@Path("/employees")
+@Path("/users")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class EmployeeRessource {
@@ -37,19 +37,20 @@ public class EmployeeRessource {
     @Secured
     @GET
     @RolesAllowed("ADMIN")
-    public List<Employee> findActiveEmployees() {
+    public List<User> findActiveEmployees() {
         return employeeRepository.findByArchived(false).collect(Collectors.toList());
     }
     @POST
     @Path("/signup")
-    public Response createEmployee(@Valid Employee employee) {
+    public Response createEmployee(@Valid User user) {
         try {
-            if (employeeRepository.findById(employee.getEmail()).isPresent()) {
-                throw new EmployeeAlreadyExistsException("Employee with id " + employee.getEmail() + " already exists");
+            // we need to check if the user already exists !!!!
+            if (employeeRepository.findById(user.getEmail()).isPresent()) {
+                throw new EmployeeAlreadyExistsException("Employee with id " + user.getEmail() + " already exists");
             }
-            employee.hashPassword(employee.getPassword(), argon2Utils);
-            employee.setCreated_on(LocalDateTime.now().format(DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy hh:mm:ss a")));
-            employeeRepository.save(employee);
+            user.hashPassword(user.getPassword(), argon2Utils);
+            user.setCreated_on(LocalDateTime.now().format(DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy hh:mm:ss a")));
+            employeeRepository.save(user);
             return Response.ok("Employee added successfully!").build();
         }
         catch (EmployeeAlreadyExistsException e) {
@@ -59,15 +60,15 @@ public class EmployeeRessource {
     @POST
     @Secured
     @RolesAllowed("ADMIN")
-    @Path("/add-employee")
-    public Response addEmployee(@Valid Employee employee) {
+    @Path("/add-user")
+    public Response addEmployee(@Valid User user) {
         try {
-            if (employeeRepository.findById(employee.getEmail()).isPresent()) {
-                throw new EmployeeNotFoundException("Employee with id " + employee.getEmail() + " already exist!");
+            if (employeeRepository.findById(user.getEmail()).isPresent()) {
+                throw new EmployeeNotFoundException("Employee with id " + user.getEmail() + " already exist!");
             }
-            employee.hashPassword(employee.getPassword(), argon2Utils);
-            employee.setCreated_on(LocalDateTime.now().format(DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy hh:mm:ss a")));
-            employeeRepository.save(employee);
+            user.hashPassword(user.getPassword(), argon2Utils);
+            user.setCreated_on(LocalDateTime.now().format(DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy hh:mm:ss a")));
+            employeeRepository.save(user);
             return Response.ok("Employee added successfully!").build();
         }
         catch (EmployeeNotFoundException e) {
@@ -79,35 +80,35 @@ public class EmployeeRessource {
     @Secured
     @RolesAllowed({"ADMIN", "USER"})
     @Path("/{email}")
-    public Employee getEmployeeById(@PathParam("email") String email) {
+    public User getEmployeeById(@PathParam("email") String email) {
         return employeeRepository.findById(email).orElseThrow(NOT_FOUND);
     }
     @PUT
     @Secured
     @RolesAllowed({"ADMIN", "USER"})
     @Path("/{email}")
-    public Response updateEmployeeById(@PathParam("email") String email, Employee employee) {
+    public Response updateEmployeeById(@PathParam("email") String email, User user) {
         try {
             if (!employeeRepository.findById(email).isPresent()){
                 throw new EmployeeNotFoundException("Employee with email " + email + " NOT FOUND!");
             }
-            Employee employeeInDb = employeeRepository.findById(email).get();
-            if (employeeInDb.getForename() != employee.getForename()) {
-                employeeInDb.setForename(employee.getForename());
+            User userInDb = employeeRepository.findById(email).get();
+            if (userInDb.getFirstName() != user.getFirstName()) {
+                userInDb.setFirstName(user.getFirstName());
             }
-            if (employeeInDb.getSurname() != employee.getSurname()) {
-                employeeInDb.setSurname(employee.getSurname());
+            if (userInDb.getLastName() != user.getLastName()) {
+                userInDb.setLastName(user.getLastName());
             }
-            if (employeeInDb.getRoles() != employee.getRoles()) {
-                employeeInDb.setRoles(employee.getRoles());
+            if (userInDb.getRoles() != user.getRoles()) {
+                userInDb.setRoles(user.getRoles());
             }
-            if (employeeInDb.getAddress_id() != employee.getAddress_id()) {
-                employeeInDb.setRoles(employee.getRoles());
+            if (userInDb.getAddress_id() != user.getAddress_id()) {
+                userInDb.setRoles(user.getRoles());
             }
-            if (employeeInDb.getPhoneNumber() != employee.getPhoneNumber()) {
-                employeeInDb.setPhoneNumber(employee.getPhoneNumber());
+            if (userInDb.getPhoneNumber() != user.getPhoneNumber()) {
+                userInDb.setPhoneNumber(user.getPhoneNumber());
             }
-            employeeRepository.save(employeeInDb);
+            employeeRepository.save(userInDb);
             return Response.ok("Employee with id " + email + " updated successfully!").build();
         }
         catch (EmployeeNotFoundException e) {
@@ -123,13 +124,13 @@ public class EmployeeRessource {
             if (!employeeRepository.findById(email).isPresent()) {
                 throw new EmployeeNotFoundException("Employee with email " + email + " NOT FOUND!");
             }
-            Employee employeeInDb = employeeRepository.findById(email).get();
-            if (!argon2Utils.check(employeeInDb.getPassword(), passwordUpdate.getOldPassword().toCharArray())) {
+            User userInDb = employeeRepository.findById(email).get();
+            if (!argon2Utils.check(userInDb.getPassword(), passwordUpdate.getOldPassword().toCharArray())) {
                 return Response.status(400, "Passwords Doesn't match").build();
             }
-            employeeInDb.setPassword(passwordUpdate.getNewPassword());
-            employeeInDb.hashPassword(employeeInDb.getPassword(), argon2Utils);
-            employeeRepository.save(employeeInDb);
+            userInDb.setPassword(passwordUpdate.getNewPassword());
+            userInDb.hashPassword(userInDb.getPassword(), argon2Utils);
+            employeeRepository.save(userInDb);
             return Response.ok("Password updated successfully").build();
         }
         catch (EmployeeNotFoundException e) {
@@ -145,9 +146,9 @@ public class EmployeeRessource {
             if (!employeeRepository.findById(email).isPresent()) {
                 throw new EmployeeNotFoundException("Employee with email " + email + " NOT FOUND!");
             }
-            Employee employeeInDb = employeeRepository.findById(email).get();
-            employeeInDb.setArchived(true);
-            employeeRepository.save(employeeInDb);
+            User userInDb = employeeRepository.findById(email).get();
+            userInDb.setArchived(true);
+            employeeRepository.save(userInDb);
             return Response.ok("Employee with email " + email + " archived!").build();
         }
         catch (EmployeeNotFoundException e){

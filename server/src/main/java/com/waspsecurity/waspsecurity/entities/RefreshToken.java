@@ -1,6 +1,7 @@
-package com.waspsecurity.waspsecurity.security;
+package com.waspsecurity.waspsecurity.entities;
 
 
+import com.waspsecurity.waspsecurity.models.Token;
 import jakarta.nosql.Column;
 import jakarta.nosql.Entity;
 
@@ -12,7 +13,7 @@ public class RefreshToken {
     private String token;
     @Column
     private AccessToken accessToken;
-    RefreshToken(Token token, AccessToken accessToken) {
+    public RefreshToken(Token token, AccessToken accessToken) {
         this.token = token.get();
         this.accessToken = accessToken;
     }

@@ -1,4 +1,4 @@
-package com.waspsecurity.waspsecurity.security;
+package com.waspsecurity.waspsecurity.models;
 
 
 import com.auth0.jwt.JWT;
@@ -7,7 +7,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.waspsecurity.waspsecurity.entities.Employee;
+import com.waspsecurity.waspsecurity.entities.User;
 import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.ConfigProvider;
 
@@ -46,7 +46,7 @@ public class UserJWT {
         return roles;
     }
 
-    static String createToken(Employee user, Token token, Duration duration) {
+    public static String createToken(User user, Token token, Duration duration) {
         final LocalDateTime expiration = LocalDateTime.now(ZoneOffset.UTC).plusMinutes(duration.toMinutes());
         Algorithm algorithm = Algorithm.HMAC512(token.get());
         List roles = new ArrayList<>();

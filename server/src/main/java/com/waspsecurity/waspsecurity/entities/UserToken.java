@@ -1,11 +1,10 @@
-package com.waspsecurity.waspsecurity.security;
+package com.waspsecurity.waspsecurity.entities;
 
+import com.waspsecurity.waspsecurity.models.Token;
 import com.waspsecurity.waspsecurity.repositories.UserTokenRepository;
 import jakarta.nosql.Column;
 import jakarta.nosql.Entity;
 import jakarta.nosql.Id;
-import jakarta.persistence.Embedded;
-import org.eclipse.jnosql.mapping.Embeddable;
 
 import java.io.Serializable;
 import java.util.*;
@@ -16,7 +15,7 @@ public class UserToken implements Serializable {
     private String email;
     @Column
     private Set<RefreshToken> tokens;
-    UserToken(String email) {
+    public UserToken(String email) {
         this.email = email;
     }
     UserToken(String email, Set<RefreshToken> tokens) {
@@ -37,12 +36,12 @@ public class UserToken implements Serializable {
         }
         return Collections.unmodifiableSet(tokens);
     }
-    void add(RefreshToken refreshToken) {
+    public void add(RefreshToken refreshToken) {
         initiateTokens();
         this.tokens.add(refreshToken);
     }
 
-    RefreshToken update(AccessToken accessToken, String refreshTokenText, UserTokenRepository repository) {
+    public RefreshToken update(AccessToken accessToken, String refreshTokenText, UserTokenRepository repository) {
         initiateTokens();
         this.tokens.removeIf(r -> refreshTokenText.equals(r.getToken()));
         RefreshToken refreshToken = new RefreshToken(Token.generate(), accessToken);

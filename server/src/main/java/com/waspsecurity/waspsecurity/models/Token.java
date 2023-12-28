@@ -1,4 +1,4 @@
-package com.waspsecurity.waspsecurity.security;
+package com.waspsecurity.waspsecurity.models;
 
 import jakarta.json.bind.annotation.JsonbCreator;
 import jakarta.json.bind.annotation.JsonbProperty;

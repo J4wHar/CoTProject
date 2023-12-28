@@ -2,7 +2,11 @@ package com.waspsecurity.waspsecurity.security;
 
 
 import com.waspsecurity.waspsecurity.Exceptions.EmployeeNotAuthorizedException;
-import com.waspsecurity.waspsecurity.entities.Employee;
+import com.waspsecurity.waspsecurity.entities.*;
+import com.waspsecurity.waspsecurity.models.Oauth2Request;
+import com.waspsecurity.waspsecurity.models.Oauth2Response;
+import com.waspsecurity.waspsecurity.models.Token;
+import com.waspsecurity.waspsecurity.models.UserJWT;
 import com.waspsecurity.waspsecurity.repositories.UserTokenRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -34,7 +38,7 @@ public class Oauth2Service {
 
     public Oauth2Response token(Oauth2Request request) {
 
-        final Employee user = securityService.findBy(request.getEmail(), request.getPassword());
+        final User user = securityService.findBy(request.getEmail(), request.getPassword());
 
         Optional<UserToken> optionalUserToken = userTokenRepository.findByEmail(request.getEmail()) ;
         UserToken userToken ;
@@ -66,7 +70,7 @@ public class Oauth2Service {
         final UserToken userToken = userTokenRepository.findByRefreshToken(request.getRefreshToken())
                 .orElseThrow(() -> new EmployeeNotAuthorizedException("Unauthorized"));
 
-        final Employee user = securityService.findBy(userToken.getEmail());
+        final User user = securityService.findBy(userToken.getEmail());
         final String employeeId = user.getEmail();
         final Token token = Token.generate();
         final String jwt = UserJWT.createToken(user, token, EXPIRES);

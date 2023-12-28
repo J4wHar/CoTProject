@@ -1,4 +1,4 @@
-package com.waspsecurity.waspsecurity.security;
+package com.waspsecurity.waspsecurity.enums;
 
 import java.util.IllformedLocaleException;
 import java.util.function.Supplier;

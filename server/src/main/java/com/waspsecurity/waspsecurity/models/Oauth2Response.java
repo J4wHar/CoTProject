@@ -1,6 +1,8 @@
-package com.waspsecurity.waspsecurity.security;
+package com.waspsecurity.waspsecurity.models;
 
 import com.waspsecurity.waspsecurity.FieldPropertyVisibilityStrategy;
+import com.waspsecurity.waspsecurity.entities.AccessToken;
+import com.waspsecurity.waspsecurity.entities.RefreshToken;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.json.bind.annotation.JsonbVisibility;
 
@@ -36,7 +38,7 @@ public class Oauth2Response {
         return employeeId;
     }
 
-    static Oauth2Response of(AccessToken accessToken, RefreshToken refreshToken, int expiresIn, String employeeId) {
+    public static Oauth2Response of(AccessToken accessToken, RefreshToken refreshToken, int expiresIn, String employeeId) {
         Oauth2Response response = new Oauth2Response();
         response.accessToken = accessToken.getToken();
         response.refreshToken = refreshToken.getToken();

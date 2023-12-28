@@ -2,8 +2,8 @@ package com.waspsecurity.waspsecurity.filters;
 
 
 import com.waspsecurity.waspsecurity.repositories.UserTokenRepository;
-import com.waspsecurity.waspsecurity.security.AccessToken;
-import com.waspsecurity.waspsecurity.security.UserJWT;
+import com.waspsecurity.waspsecurity.entities.AccessToken;
+import com.waspsecurity.waspsecurity.models.UserJWT;
 import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
 import jakarta.security.enterprise.AuthenticationStatus;

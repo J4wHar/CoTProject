@@ -1,4 +1,4 @@
-package com.waspsecurity.waspsecurity.entities;
+package com.waspsecurity.waspsecurity.enums;
 
 import java.util.function.Supplier;
 

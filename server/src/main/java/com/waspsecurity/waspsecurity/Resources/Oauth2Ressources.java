@@ -1,12 +1,11 @@
 package com.waspsecurity.waspsecurity.Resources;
 
 
-import com.waspsecurity.waspsecurity.security.Oauth2Request;
-import com.waspsecurity.waspsecurity.security.Oauth2Response;
+import com.waspsecurity.waspsecurity.models.Oauth2Request;
+import com.waspsecurity.waspsecurity.models.Oauth2Response;
 import com.waspsecurity.waspsecurity.security.Oauth2Service;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;

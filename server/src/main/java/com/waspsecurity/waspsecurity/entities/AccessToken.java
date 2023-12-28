@@ -1,4 +1,4 @@
-package com.waspsecurity.waspsecurity.security;
+package com.waspsecurity.waspsecurity.entities;
 
 
 
