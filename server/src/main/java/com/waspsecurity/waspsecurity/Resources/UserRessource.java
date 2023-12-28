@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 @Path("/users")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class EmployeeRessource {
+public class UserRessource {
     private static final Supplier<WebApplicationException> NOT_FOUND =
             () -> new WebApplicationException(Response.Status.NOT_FOUND);
     @Inject
@@ -45,7 +45,7 @@ public class EmployeeRessource {
     public Response createEmployee(@Valid User user) {
         try {
             // we need to check if the user already exists !!!!
-            if (employeeRepository.findById(user.getEmail()).isPresent()) {
+            if (employeeRepository.findByEmail(user.getEmail()).isPresent()) {
                 throw new EmployeeAlreadyExistsException("Employee with id " + user.getEmail() + " already exists");
             }
             user.hashPassword(user.getPassword(), argon2Utils);
@@ -54,7 +54,7 @@ public class EmployeeRessource {
             return Response.ok("Employee added successfully!").build();
         }
         catch (EmployeeAlreadyExistsException e) {
-            return  Response.status(400, e.getMessage()).build();
+            return  Response.status(400).entity(e.getMessage()).build();
         }
     }
     @POST
