@@ -1,10 +1,10 @@
 // script.js
-singUpEndpoint = 'http://localhost:8080/waspsecurity-1.0-SNAPSHOT/api/users/signup';
+const singUpEndpoint = 'http://localhost:8080/waspsecurity-1.0-SNAPSHOT/api/users/signup';
 
-function prepareData(){
+function prepareData() {
     const currentDate = new Date().toISOString();
     const form = document.getElementById('signupForm');
-    const formData =  new FormData(form);
+    const formData = new FormData(form);
     formData.append('archived', false);
     formData.append('created_on', currentDate);
 
@@ -13,10 +13,11 @@ function prepareData(){
     formData.delete('roles')
 
     var object = {};
-    formData.forEach(function(value, key){
+    formData.forEach(function (value, key) {
         object[key] = value;
     });
-    object['roles']= rolesArray;
+    object['roles'] = rolesArray;
+    console.log(object);
     return JSON.stringify(object);
 }
 
@@ -25,20 +26,20 @@ function signUp() {
     fetch(singUpEndpoint, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         },
-        body: prepareData(),
+        body: prepareData()
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Signup successful:', data);
-    })
-    .catch(error => {
-        console.error('Error during signup:', error);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Signup successful:', data);
+        })
+        .catch(error => {
+            console.error('Error during signup:', error);
+        });
 }

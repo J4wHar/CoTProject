@@ -6,21 +6,21 @@
     <link rel="manifest" href="/manifest.json">
 </head>
 <body>
-    <!-- ... -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js')
-                .then((registration) => {
-                    console.log('Service Worker registered with scope:', registration.scope);
-                })
-                .catch((error) => {
-                    console.error('Service Worker registration failed:', error);
-                });
-        }
-    </script>
-     <h1>Welcome to Waspsecurity!</h1>
-     <button onclick="window.location.href='signin.html'">Sign In</button>
-     <button onclick="window.location.href='signup.html'">Sign Up</button>
- 
+<!-- ... -->
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+                console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch((error) => {
+                console.error('Service Worker registration failed:', error);
+            });
+    }
+</script>
+<h1>Welcome to Waspsecurity!</h1>
+<button onclick="window.location.href='signin.html'">Sign In</button>
+<button onclick="window.location.href='signup.html'">Sign Up</button>
+
 </body>
 </html>

@@ -1,10 +1,10 @@
 singInEndpoint = 'http://localhost:8080/waspsecurity-1.0-SNAPSHOT/api/oauth2/token';
 
-function prepareData(){
+function prepareData() {
     const form = document.getElementById('signInForm');
-    const formData =  new FormData(form);
+    const formData = new FormData(form);
     var object = {};
-    formData.forEach(function(value, key){
+    formData.forEach(function (value, key) {
         object[key] = value;
     });
     object['grandType'] = 'PASSWORD'
@@ -15,8 +15,9 @@ function prepareData(){
 function saveTokenToLocalStorage(token) {
     localStorage.setItem('accessToken', token);
 }
-function signIn(){
-  
+
+function signIn() {
+
 
     fetch(singInEndpoint, {
         method: 'POST',
@@ -25,19 +26,20 @@ function signIn(){
         },
         body: prepareData(),
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Signup successful:', data);
-        saveTokenToLocalStorage(data.accessToken);
-        //redirect to alert page
-        window.location.href = 'alerts.html';
-    })
-    .catch(error => {
-        console.error('Error during signup:', error);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Signup successful:', data);
+            saveTokenToLocalStorage(data.accessToken);
+            //redirect to alert page
+            window.location.href = 'alerts.html';
+        })
+        .catch(error => {
+            console.error('Error during signup:', error);
+        });
 }
+
