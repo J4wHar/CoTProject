@@ -1,0 +1,202 @@
+/** {*/
+/*    font-family: "Poppins", serif;*/
+/*}*/
+
+/*body {*/
+/*    -webkit-user-select: none;*/
+/*    -moz-user-select: none;*/
+/*    -ms-user-select: none;*/
+/*    user-select: none;*/
+/*    overflow-y: hidden;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    background: linear-gradient(to bottom, orange, black);*/
+/*    height: 100vh;*/
+/*}*/
+
+/*.screen-1 {*/
+/*    background: #f1f7fe;*/
+/*    padding: 2em;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    border-radius: 30px;*/
+/*    box-shadow: 0 0 2em #e6e9f9;*/
+/*    gap: 2em;*/
+/*}*/
+
+/*.screen-1 .logo {*/
+/*    margin-top: -3em;*/
+/*}*/
+
+/*.screen-1 .email {*/
+/*    background: white;*/
+/*    box-shadow: 0 0 2em orange;*/
+/*    padding: 1em;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 0.5em;*/
+/*    border-radius: 20px;*/
+/*    color: #4d4d4d;*/
+/*    margin-top: -3em;*/
+/*}*/
+
+/*.screen-1 .email input {*/
+/*    outline: none;*/
+/*    border: none;*/
+/*}*/
+
+/*.screen-1 .email input::-moz-placeholder {*/
+/*    color: black;*/
+/*    font-size: 0.9em;*/
+/*}*/
+
+/*.screen-1 .email input:-ms-input-placeholder {*/
+/*    color: black;*/
+/*    font-size: 0.9em;*/
+/*}*/
+
+/*.screen-1 .email input::placeholder {*/
+/*    color: black;*/
+/*    font-size: 0.9em;*/
+/*}*/
+
+/*.screen-1 .email ion-icon {*/
+/*    color: #4d4d4d;*/
+/*    margin-bottom: -0.2em;*/
+/*}*/
+
+/*.screen-1 .password {*/
+/*    background: white;*/
+/*    box-shadow: 0 0 2em #e6e9f9;*/
+/*    padding: 1em;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 0.5em;*/
+/*    border-radius: 20px;*/
+/*    color: #4d4d4d;*/
+/*}*/
+
+/*.screen-1 .password input {*/
+/*    outline: none;*/
+/*    border: none;*/
+/*}*/
+
+/*.screen-1 .password input::-moz-placeholder {*/
+/*    color: black;*/
+/*    font-size: 0.9em;*/
+/*}*/
+
+/*.screen-1 .password input:-ms-input-placeholder {*/
+/*    color: black;*/
+/*    font-size: 0.9em;*/
+/*}*/
+
+/*.screen-1 .password input::placeholder {*/
+/*    color: black;*/
+/*    font-size: 0.9em;*/
+/*}*/
+
+/*.screen-1 .password ion-icon {*/
+/*    color: #4d4d4d;*/
+/*    margin-bottom: -0.2em;*/
+/*}*/
+
+/*.screen-1 .password .show-hide {*/
+/*    margin-right: -5em;*/
+/*}*/
+
+/*.screen-1 .signup {*/
+/*    padding: 1em;*/
+/*    background: orange;*/
+/*    color: white;*/
+/*    border: none;*/
+/*    border-radius: 30px;*/
+/*    font-weight: 600;*/
+/*}*/
+
+/*.screen-1 .footer {*/
+/*    display: flex;*/
+/*    font-size: 0.7em;*/
+/*    color: #5e5e5e;*/
+/*    gap: 14em;*/
+/*    padding-bottom: 10em;*/
+/*}*/
+
+/*.screen-1 .footer span {*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*button {*/
+/*    cursor: pointer;*/
+/*}*/
+/* signup.css */
+body {
+    background: linear-gradient(to bottom, orange, #000);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.navbar {
+    background-color: #333; /* Dark background for the navbar */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for the navbar */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar:hover {
+    background-color: #555; /* Darker background on hover */
+}
+
+.brand {
+    color: black !important; /* Wasp Security brand color */
+}
+
+.card {
+    background-color: #333; /* Dark background for the card */
+    color: #fff; /* Text color for the card */
+    border: 1px solid orange; /* Border color for the card */
+}
+
+.alert {
+    background-color: #ff4d4d; /* Red background for the alert */
+    color: #fff; /* Text color for the alert */
+    border: 1px solid #e3342f; /* Border color for the alert */
+}
+
+.form-control {
+    background-color: #444; /* Dark background for form inputs */
+    color: #fff; /* Text color for form inputs */
+    border: 1px solid orange; /* Border color for form inputs */
+}
+
+.form-control:focus {
+    background-color: #555; /* Darker background for focused form inputs */
+    color: #fff; /* Text color for focused form inputs */
+    border: 1px solid orange; /* Border color for focused form inputs */
+}
+
+.btn-success {
+    background-color: orange !important; /* Orange button color */
+    border: 1px solid orange !important; /* Orange border color */
+}
+
+.btn-success:hover {
+    background-color: #ff7f00 !important; /* Darker orange on hover */
+    border: 1px solid #ff7f00 !important; /* Darker orange border on hover */
+}
+
+.form-link {
+    color: orange; /* Orange color for form links */
+}
+
+.form-link:hover {
+    text-decoration: underline; /* Underline on hover for form links */
+}

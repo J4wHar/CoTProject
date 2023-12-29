@@ -1,0 +1,66 @@
+.navbar {
+    background-color: transparent !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Add smooth transitions */
+    width: 32rem !important;
+}
+
+.navbar:hover {
+    background-color: #ff7f00 !important; /* Change color on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+}
+
+button {
+    background-color: orange !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff7f00 !important; /* Change color on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.center-all {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Add these styles to center the navbar */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+    margin: 0; /* Remove default margin */
+}
+
+
+.container-fluid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px; /* Add padding to the container if needed */
+}
+
+.logo {
+    width: 40px; /* Adjust the logo size as needed */
+    height: 40px;
+    margin-right: 10px; /* Add margin between logo and brand label */
+}
+
+.brand {
+    color: black;
+    font-size: 1.5rem; /* Adjust the font size as needed */
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+}
