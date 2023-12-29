@@ -64,3 +64,89 @@ body {
     text-align: center;
     text-decoration: none;
 }
+
+
+/* main.css */
+body {
+    background: linear-gradient(to bottom, orange, #000);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.navbar {
+    background-color: #333; /* Dark background for the navbar */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for the navbar */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar:hover {
+    background-color: #555; /* Darker background on hover */
+}
+
+.brand {
+    color: orange !important; /* Wasp Security brand color */
+}
+
+/* About Section Styles */
+.about-section {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.about-section h2 {
+    color: orange;
+}
+
+.about-section p {
+    color: #fff;
+}
+
+/* Welcome Section Styles */
+.welcome-section {
+    padding: 50px 0;
+    text-align: center;
+}
+
+h1 {
+    color: orange; /* Header color */
+}
+
+button {
+    padding: 10px;
+    background-color: orange;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #ff7f00; /* Darker orange on hover */
+}
+
+/* main.css */
+/* ... existing styles ... */
+
+/* About Section Styles */
+.about-section {
+    display: none;
+    opacity: 0;
+    padding: 50px 0;
+    text-align: center;
+    transition: opacity 0.5s ease; /* Add transition for opacity */
+}
+
+.about-section.visible {
+    display: block;
+    opacity: 1;
+}
+
+/* Optional: Add additional styles for other elements on your page */

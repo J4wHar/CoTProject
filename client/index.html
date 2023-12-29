@@ -3,8 +3,9 @@
 <html lang="en">
 <head>
     <!-- Link to your external CSS file -->
-    <link rel="stylesheet" href="/main.css">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="signup.css">
+    <link rel="manifest" href="manifest.json">
     <title>Wasp Security</title>
 </head>
 <body>
@@ -19,9 +20,38 @@
                 console.error('Service Worker registration failed:', error);
             });
     }
+
+    function toggleAboutSection() {
+        var aboutSection = document.getElementById('about');
+        aboutSection.classList.toggle('visible');
+    }
 </script>
-<h1>Welcome to Wasp Security!</h1>
-<button onclick="window.location.href='signin.html'">Sign In</button>
-<button onclick="window.location.href='signup.html'">Sign Up</button>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+            <img src="wasp.png" class="logo"/>
+            <label class="brand">Wasp Security</label>
+        </a>
+    </div>
+</nav>
+<section id="welcome" class="welcome-section">
+    <div class="container">
+        <h1>Welcome to Wasp Security!</h1>
+        <button onclick="window.location.href='signin.html'">Sign In</button>
+        <button onclick="window.location.href='signup.html'">Sign Up</button>
+        <button onclick="toggleAboutSection()">About Us</button>
+    </div>
+</section>
+
+<section id="about" class="about-section">
+    <div class="container">
+        <h2>About Wasp Security</h2>
+        <p>
+            Wasp Security aims to detect abnormal behavior and keep users informed about updates
+            when anything unusual happens. Our goal is to provide a secure environment by
+            monitoring and responding to potential security threats.
+        </p>
+    </div>
+</section>
 </body>
 </html>
