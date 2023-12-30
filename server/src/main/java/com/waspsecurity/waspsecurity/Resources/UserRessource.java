@@ -4,6 +4,8 @@ package com.waspsecurity.waspsecurity.Resources;
 import com.waspsecurity.waspsecurity.Exceptions.EmployeeAlreadyExistsException;
 import com.waspsecurity.waspsecurity.Exceptions.EmployeeNotFoundException;
 import com.waspsecurity.waspsecurity.entities.User;
+import com.waspsecurity.waspsecurity.enums.Role;
+import com.waspsecurity.waspsecurity.models.Email;
 import com.waspsecurity.waspsecurity.models.PasswordUpdate;
 import com.waspsecurity.waspsecurity.filters.Secured;
 import com.waspsecurity.waspsecurity.repositories.UserRepository;
@@ -19,7 +21,10 @@ import jakarta.ws.rs.core.Response;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -153,6 +158,24 @@ public class UserRessource {
         }
         catch (EmployeeNotFoundException e){
             return Response.status(400, e.getMessage()).build();
+        }
+    }
+    @PATCH
+    @Secured
+    @RolesAllowed({"ADMIN","USER"})
+    @Path("/add-admin")
+    public Response addAdmin(Email email) {
+        try {
+            User userInDb = userRepository.findByEmail(email.getEmail()).get();
+            Set<Role> roles = new HashSet<>();
+            roles.add(Role.ADMIN);
+            roles.add(Role.USER);
+            userInDb.setRoles(roles);
+            userRepository.save(userInDb);
+            return Response.ok("user updated as admin successfully").build();
+        }
+        catch (Exception ex){
+            return Response.status(400, ex.getMessage()).build();
         }
     }
 }
