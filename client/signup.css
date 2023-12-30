@@ -1,0 +1,46 @@
+
+.brand {
+    color: black !important; /* Wasp Security brand color */
+}
+
+.card {
+    background-color: #333; /* Dark background for the card */
+    color: #fff; /* Text color for the card */
+    border: 1px solid orange; /* Border color for the card */
+}
+
+.alert {
+    background-color: #ff4d4d; /* Red background for the alert */
+    color: #fff; /* Text color for the alert */
+    border: 1px solid #e3342f; /* Border color for the alert */
+}
+
+.form-control {
+    background-color: #444; /* Dark background for form inputs */
+    color: #fff; /* Text color for form inputs */
+    border: 1px solid orange; /* Border color for form inputs */
+}
+
+.form-control:focus {
+    background-color: #555; /* Darker background for focused form inputs */
+    color: #fff; /* Text color for focused form inputs */
+    border: 1px solid orange; /* Border color for focused form inputs */
+}
+
+.btn-success {
+    background-color: orange !important; /* Orange button color */
+    border: 1px solid orange !important; /* Orange border color */
+}
+
+.btn-success:hover {
+    background-color: #ff7f00 !important; /* Darker orange on hover */
+    border: 1px solid #ff7f00 !important; /* Darker orange border on hover */
+}
+
+.form-link {
+    color: orange; /* Orange color for form links */
+}
+
+.form-link:hover {
+    text-decoration: underline; /* Underline on hover for form links */
+}

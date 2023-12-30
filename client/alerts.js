@@ -45,3 +45,8 @@ setInterval(fetchAlerts, 5 * 60 * 1000);
 
 // Initial fetch when the page loads
 fetchAlerts();
+
+function logout() {
+    localStorage.clear();
+    window.location.href = "signin.html";
+}
