@@ -88,12 +88,26 @@ public class AlertResource {
 
     // Method to calculate distance between an alert and a user based on their locations
     private double calculateDistance(Alert alert, User user) {
-        Coordinates userCoord  = coordinatesRepository.findByEmail(user.getEmail()).get();
-        double lat1 = alert.getLatitude();
-        double lon1 = alert.getLongitude();
-        double lat2 = userCoord.getLatitude();
-        double lon2 = userCoord.getLongitude();
+        Optional<Coordinates> userCoordOpt  = coordinatesRepository.findByEmail(user.getEmail());
+        if(!userCoordOpt.isPresent()){
+            return 1e9;
+        }
+        Coordinates userCoord = userCoordOpt.get();
+        double lat1 = Math.toRadians(alert.getLatitude());
+        double lon1 = Math.toRadians(alert.getLongitude());
+        double lat2 = Math.toRadians(userCoord.getLatitude());
+        double lon2 = Math.toRadians(userCoord.getLongitude());
 
-        return Math.abs(lat1 - lat2) + Math.abs(lon1 - lon2);
+        // Haversine formula
+        double dlat = lat2 - lat1;
+        double dlon = lon2 - lon1;
+        double a = Math.sin(dlat / 2) * Math.sin(dlat / 2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dlon / 2) * Math.sin(dlon / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        // Radius of Earth in kilometers
+        double radius = 6371.0;
+
+        // Calculate the distance
+        return radius * c;
     }
 }
