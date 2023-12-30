@@ -3,9 +3,17 @@
 <html lang="en">
 <head>
     <!-- Link to your external CSS file -->
+
+    <link rel="icon" type="image/x-icon" href="wasp.png"/>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+            crossorigin="anonymous"
+    />
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="signup.css">
-    <link rel="manifest" href="manifest.json">
     <title>Wasp Security</title>
 </head>
 <body>
@@ -37,9 +45,9 @@
 <section id="welcome" class="welcome-section">
     <div class="container">
         <h1>Welcome to Wasp Security!</h1>
-        <button onclick="window.location.href='signin.html'">Sign In</button>
-        <button onclick="window.location.href='signup.html'">Sign Up</button>
-        <button onclick="toggleAboutSection()">About Us</button>
+        <button onclick="window.location.href='signin.html'" class="brand">Sign In</button>
+        <button onclick="window.location.href='signup.html'" class="brand">Sign Up</button>
+        <button onclick="toggleAboutSection()" class="brand">About Us</button>
     </div>
 </section>
 

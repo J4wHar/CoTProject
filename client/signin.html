@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" href="main.css"/>
     <link rel="stylesheet" href="signup.css"/>
+    <script src="signin.js"></script>
     <title>Wasp Security - Sign In</title>
 </head>
 <body>
@@ -44,13 +45,12 @@
                 <br/>
                 <label>Password</label>
                 <input type="password" class="form-control" id="password-input"/>
-                <br/>
-                <input type="checkbox" id="show-password"/>
-                <label for="show-password">Show password</label>
+            </form>
                 <br/><br/>
                 <div class="center-all">
                     <button
                             class="btn btn-success brand"
+                            onclick="signIn()"
                             style="width: 10rem"
                             id="login-button"
                     >
@@ -64,7 +64,7 @@
                     >Recover lost account</a
                     >
                 </div>
-            </form>
+
         </div>
     </div>
 </div>
@@ -74,5 +74,5 @@
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"
 ></script>
-<script src="/scripts/login.js" type="module"></script>
+
 </html>

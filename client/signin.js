@@ -1,14 +1,20 @@
-singInEndpoint = 'http://localhost:8080/waspsecurity-1.0-SNAPSHOT/api/oauth2/token';
+const singInEndpoint = 'http://localhost:8080/waspsecurity-1.0-SNAPSHOT/api/oauth2/token';
 
 function prepareData() {
-    const form = document.getElementById('signInForm');
-    const formData = new FormData(form);
-    var object = {};
-    formData.forEach(function (value, key) {
-        object[key] = value;
-    });
-    object['grandType'] = 'PASSWORD'
-    object['refreshToken'] = "empty"
+
+
+
+    const emailInput = document.getElementById("email-input");
+    const passwordInput = document.getElementById("password-input");
+
+    let object = {};
+
+    object["email"] = emailInput.value;
+    object["password"] = passwordInput.value;
+
+    object['grandType'] = 'PASSWORD';
+    object['refreshToken'] = "empty";
+
     return JSON.stringify(object);
 }
 

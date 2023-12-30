@@ -11,6 +11,7 @@
             integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
             crossorigin="anonymous"
     />
+    <script src="signup.js"></script>
     <link rel="stylesheet" href="main.css"/>
     <link rel="stylesheet" href="signup.css"/>
     <title>Wasp Security - Sign Up</title>
@@ -39,8 +40,11 @@
                     style="display: none"
             ></div>
             <form>
-                <label>Username</label>
-                <input type="text" class="form-control" id="username-input"/>
+                <label>First Name</label>
+                <input type="text" class="form-control" id="first-name-input"/>
+                <br/>
+                <label>Last Name</label>
+                <input type="text" class="form-control" id="last-name-input"/>
                 <br/>
                 <label>Email</label>
                 <input type="email" class="form-control" id="email-input"/>
@@ -50,15 +54,14 @@
                 <br/>
                 <label>Phone number</label>
                 <input type="number" class="form-control" id="phone-input"/>
-                <br/>
-                <input type="checkbox" id="show-password"/>
-                <label for="show-password">Show password</label>
+            </form>
                 <br/><br/>
                 <div class="center-all">
                     <button
                             id="signup-button"
                             class="btn btn-success brand"
                             style="width: 10rem"
+                            onclick="signUp()"
                     >
                         Sign Up
                     </button>
@@ -72,7 +75,7 @@
                     >Recover lost account</a
                     >
                 </div>
-            </form>
+
         </div>
     </div>
 </div>
@@ -82,5 +85,4 @@
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"
 ></script>
-<script src="/scripts/signUp.js" type="module"></script>
 </html>
