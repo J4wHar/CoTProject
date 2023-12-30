@@ -7,7 +7,7 @@ import jakarta.data.repository.Repository;
 import java.util.Optional;
 import java.util.stream.Stream;
 @Repository
-public interface EmployeeRepository extends CrudRepository<User, String> {
+public interface UserRepository extends CrudRepository<User, String> {
     Optional<User> findByEmail(String email);
     Stream<User> findAll();
     Stream<User> findByArchived(boolean archived);

@@ -6,7 +6,7 @@ import com.waspsecurity.waspsecurity.Exceptions.EmployeeNotFoundException;
 import com.waspsecurity.waspsecurity.entities.User;
 import com.waspsecurity.waspsecurity.models.PasswordUpdate;
 import com.waspsecurity.waspsecurity.filters.Secured;
-import com.waspsecurity.waspsecurity.repositories.EmployeeRepository;
+import com.waspsecurity.waspsecurity.repositories.UserRepository;
 import com.waspsecurity.waspsecurity.utils.Argon2Utils;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -31,26 +31,26 @@ public class UserRessource {
     private static final Supplier<WebApplicationException> NOT_FOUND =
             () -> new WebApplicationException(Response.Status.NOT_FOUND);
     @Inject
-    EmployeeRepository employeeRepository;
+    UserRepository userRepository;
     @Inject
     Argon2Utils argon2Utils;
     @Secured
     @GET
     @RolesAllowed("ADMIN")
     public List<User> findActiveEmployees() {
-        return employeeRepository.findByArchived(false).collect(Collectors.toList());
+        return userRepository.findByArchived(false).collect(Collectors.toList());
     }
     @POST
     @Path("/signup")
     public Response createEmployee(@Valid User user) {
         try {
             // we need to check if the user already exists !!!!
-            if (employeeRepository.findByEmail(user.getEmail()).isPresent()) {
+            if (userRepository.findByEmail(user.getEmail()).isPresent()) {
                 throw new EmployeeAlreadyExistsException("Employee with id " + user.getEmail() + " already exists");
             }
             user.hashPassword(user.getPassword(), argon2Utils);
             user.setCreated_on(LocalDateTime.now().format(DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy hh:mm:ss a")));
-            employeeRepository.save(user);
+            userRepository.save(user);
             return Response.ok("Employee added successfully!").build();
         }
         catch (EmployeeAlreadyExistsException e) {
@@ -63,12 +63,12 @@ public class UserRessource {
     @Path("/add-user")
     public Response addEmployee(@Valid User user) {
         try {
-            if (employeeRepository.findById(user.getEmail()).isPresent()) {
+            if (userRepository.findById(user.getEmail()).isPresent()) {
                 throw new EmployeeNotFoundException("Employee with id " + user.getEmail() + " already exist!");
             }
             user.hashPassword(user.getPassword(), argon2Utils);
             user.setCreated_on(LocalDateTime.now().format(DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy hh:mm:ss a")));
-            employeeRepository.save(user);
+            userRepository.save(user);
             return Response.ok("Employee added successfully!").build();
         }
         catch (EmployeeNotFoundException e) {
@@ -81,7 +81,7 @@ public class UserRessource {
     @RolesAllowed({"ADMIN", "USER"})
     @Path("/{email}")
     public User getEmployeeById(@PathParam("email") String email) {
-        return employeeRepository.findById(email).orElseThrow(NOT_FOUND);
+        return userRepository.findById(email).orElseThrow(NOT_FOUND);
     }
     @PUT
     @Secured
@@ -89,10 +89,10 @@ public class UserRessource {
     @Path("/{email}")
     public Response updateEmployeeById(@PathParam("email") String email, User user) {
         try {
-            if (!employeeRepository.findById(email).isPresent()){
+            if (!userRepository.findById(email).isPresent()){
                 throw new EmployeeNotFoundException("Employee with email " + email + " NOT FOUND!");
             }
-            User userInDb = employeeRepository.findById(email).get();
+            User userInDb = userRepository.findById(email).get();
             if (userInDb.getFirstName() != user.getFirstName()) {
                 userInDb.setFirstName(user.getFirstName());
             }
@@ -108,7 +108,7 @@ public class UserRessource {
             if (userInDb.getPhoneNumber() != user.getPhoneNumber()) {
                 userInDb.setPhoneNumber(user.getPhoneNumber());
             }
-            employeeRepository.save(userInDb);
+            userRepository.save(userInDb);
             return Response.ok("Employee with id " + email + " updated successfully!").build();
         }
         catch (EmployeeNotFoundException e) {
@@ -121,16 +121,16 @@ public class UserRessource {
     @Path("/update-password/{email}")
     public Response updatePassword(@PathParam("email") String email, PasswordUpdate passwordUpdate) {
         try {
-            if (!employeeRepository.findById(email).isPresent()) {
+            if (!userRepository.findById(email).isPresent()) {
                 throw new EmployeeNotFoundException("Employee with email " + email + " NOT FOUND!");
             }
-            User userInDb = employeeRepository.findById(email).get();
+            User userInDb = userRepository.findById(email).get();
             if (!argon2Utils.check(userInDb.getPassword(), passwordUpdate.getOldPassword().toCharArray())) {
                 return Response.status(400, "Passwords Doesn't match").build();
             }
             userInDb.setPassword(passwordUpdate.getNewPassword());
             userInDb.hashPassword(userInDb.getPassword(), argon2Utils);
-            employeeRepository.save(userInDb);
+            userRepository.save(userInDb);
             return Response.ok("Password updated successfully").build();
         }
         catch (EmployeeNotFoundException e) {
@@ -143,12 +143,12 @@ public class UserRessource {
     @Path("/{email}")
     public Response deleteEmployee(@PathParam("email") String email) {
         try {
-            if (!employeeRepository.findById(email).isPresent()) {
+            if (!userRepository.findById(email).isPresent()) {
                 throw new EmployeeNotFoundException("Employee with email " + email + " NOT FOUND!");
             }
-            User userInDb = employeeRepository.findById(email).get();
+            User userInDb = userRepository.findById(email).get();
             userInDb.setArchived(true);
-            employeeRepository.save(userInDb);
+            userRepository.save(userInDb);
             return Response.ok("Employee with email " + email + " archived!").build();
         }
         catch (EmployeeNotFoundException e){

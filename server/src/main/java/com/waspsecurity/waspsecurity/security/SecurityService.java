@@ -4,7 +4,7 @@ package com.waspsecurity.waspsecurity.security;
 import com.waspsecurity.waspsecurity.Exceptions.EmployeeNotAuthorizedException;
 import com.waspsecurity.waspsecurity.entities.User;
 import com.waspsecurity.waspsecurity.enums.Role;
-import com.waspsecurity.waspsecurity.repositories.EmployeeRepository;
+import com.waspsecurity.waspsecurity.repositories.UserRepository;
 import com.waspsecurity.waspsecurity.utils.Argon2Utils;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -15,7 +15,7 @@ import java.security.Principal;
 public class SecurityService {
 
     @Inject
-    EmployeeRepository employeeRepository;
+    UserRepository userRepository;
     @Inject
     Argon2Utils argon2Utils;
     @Inject
@@ -88,14 +88,14 @@ public class SecurityService {
     }
 
     public User findBy(String email) {
-        return employeeRepository.findByEmail(email)
+        return userRepository.findByEmail(email)
                 .orElseThrow(() -> new EmployeeNotAuthorizedException("Unauthorized"));
     }
 
     public User findBy(String email, String password) {
         System.out.println("------------------------------------------------");
-        System.out.println(employeeRepository.findById(email).toString());
-        final User user = employeeRepository.findById(email)
+        System.out.println(userRepository.findById(email).toString());
+        final User user = userRepository.findById(email)
                 .orElseThrow(() -> new EmployeeNotAuthorizedException("Unauthorized"));
         System.out.println(argon2Utils.check(user.getPassword() ,password.toCharArray()));
         if (argon2Utils.check(user.getPassword() ,password.toCharArray() )) {
