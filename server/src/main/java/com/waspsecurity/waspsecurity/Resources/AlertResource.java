@@ -53,7 +53,12 @@ public class AlertResource {
         try {
             String userEmail = extractUserEmailFromToken(authHeader);
             List<Alert> alertsToSend = sendAlertsIfApplicable(userEmail);
-            return Response.ok(alertsToSend).build();
+            return Response.ok(alertsToSend)
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Headers", "*")
+                    .header("Access-Control-Allow-Credentials", "true")
+                    .header("Access-Control-Allow-Methods", "*")
+                    .header("Access-Control-Max-Age", "1209600").build();
         } catch (Exception ex) {
             return Response.status(400, ex.getMessage()).build();
         }
