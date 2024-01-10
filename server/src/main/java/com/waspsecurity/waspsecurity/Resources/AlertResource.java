@@ -9,6 +9,7 @@ import com.waspsecurity.waspsecurity.repositories.CoordinatesRepository;
 import com.waspsecurity.waspsecurity.repositories.UserRepository;
 import com.waspsecurity.waspsecurity.repositories.UserTokenRepository;
 import com.waspsecurity.waspsecurity.entities.UserToken;
+import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -27,6 +28,7 @@ import java.util.stream.Collectors;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class AlertResource {
+    @PermitAll
     @OPTIONS
     public Response preflights() {
         return Response.ok()
