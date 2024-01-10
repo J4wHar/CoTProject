@@ -4,6 +4,7 @@ import jakarta.annotation.Priority;
 import jakarta.annotation.security.DenyAll;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
+import jakarta.ws.rs.HttpMethod;
 import jakarta.ws.rs.Priorities;
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.container.ContainerRequestContext;
@@ -24,6 +25,10 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 
     @Override
     public void filter(ContainerRequestContext requestContext) {
+        if(!requestContext.getMethod().equals(HttpMethod.OPTIONS)){
+            return;
+        }
+
         Method method = resourceInfo.getResourceMethod();
 
         // @DenyAll on the method takes precedence over @RolesAllowed and @PermitAll
