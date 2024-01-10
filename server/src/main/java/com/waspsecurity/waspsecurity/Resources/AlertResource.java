@@ -27,6 +27,16 @@ import java.util.stream.Collectors;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class AlertResource {
+    @OPTIONS
+    public Response preflights() {
+        return Response.ok()
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "*")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "*")
+                .header("Access-Control-Max-Age", "1209600")
+                .build();
+    }
     @Inject
     CoordinatesRepository coordinatesRepository;
     @Inject
