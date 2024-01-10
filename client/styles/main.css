@@ -73,12 +73,12 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    overflow-y: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .navbar {
@@ -148,5 +148,6 @@ button:hover {
     display: block;
     opacity: 1;
 }
+
 
 /* Optional: Add additional styles for other elements on your page */

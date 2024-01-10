@@ -18,8 +18,9 @@ function prepareData() {
     return JSON.stringify(object);
 }
 
-function saveTokenToLocalStorage(token) {
-    localStorage.setItem('accessToken', token);
+function saveDataToLocalStorage(data) {
+    localStorage.setItem('accessToken', data.accessToken);
+    localStorage.setItem('email', data.employeeId);
 }
 
 function signIn() {
@@ -40,7 +41,7 @@ function signIn() {
         })
         .then(data => {
             console.log('Signup successful:', data);
-            saveTokenToLocalStorage(data.accessToken);
+            saveDataToLocalStorage(data);
             //redirect to alert page
             window.location.href = 'alerts.html';
         })
@@ -48,4 +49,3 @@ function signIn() {
             console.error('Error during signup:', error);
         });
 }
-

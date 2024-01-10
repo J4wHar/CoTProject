@@ -25,7 +25,7 @@ public class LocalizationResource {
     UserTokenRepository userTokenRepository;
     @Secured
     @GET
-    @RolesAllowed({"ADMIN", "USER"})
+    @RolesAllowed({"USER"})
     public Response getUserLocalization(@HeaderParam("Authorization") String authHeader) {
         try{
             Coordinates coordinates = coordinatesRepository.findByEmail(extractUserEmailFromToken(authHeader)).get();
@@ -37,7 +37,7 @@ public class LocalizationResource {
     }
     @Secured
     @POST
-    @RolesAllowed({"ADMIN", "USER"})
+    @RolesAllowed({"USER"})
     public Response AddUserLocalization(@HeaderParam("Authorization") String authHeader, Coordinates coordinates) {
         try{
             String userEmail = extractUserEmailFromToken(authHeader);
@@ -51,7 +51,7 @@ public class LocalizationResource {
     }
     @Secured
     @PUT
-    @RolesAllowed({"ADMIN", "USER"})
+    @RolesAllowed({"USER"})
     public Response UpdateUserLocalization(@HeaderParam("Authorization") String authHeader, Coordinates coordinates) {
         try{
             String userEmail = extractUserEmailFromToken(authHeader);

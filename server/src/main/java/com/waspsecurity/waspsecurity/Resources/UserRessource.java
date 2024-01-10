@@ -162,7 +162,7 @@ public class UserRessource {
     }
     @PATCH
     @Secured
-    @RolesAllowed({"ADMIN","USER"})
+    @RolesAllowed({"ADMIN"})
     @Path("/add-admin")
     public Response addAdmin(Email email) {
         try {

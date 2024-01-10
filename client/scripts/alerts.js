@@ -16,6 +16,7 @@ function fetchAlerts() {
             return response.json();
         })
         .then(data => {
+            console.log("hello done")
             displayAlerts(data);
         })
         .catch(error => {
@@ -40,8 +41,8 @@ function displayAlerts(alerts) {
     }
 }
 
-// Fetch alerts every 5 minutes
-setInterval(fetchAlerts, 5 * 60 * 1000);
+// Fetch alerts every 5 seconds
+setInterval(fetchAlerts, 5000);
 
 // Initial fetch when the page loads
 fetchAlerts();

@@ -37,7 +37,7 @@ public class AuthenticationFilter implements HttpAuthenticationMechanism {
                                                 HttpMessageContext httpMessageContext) {
 
         if(request.getMethod().equals(HttpMethod.OPTIONS)){
-            httpMessageContext.doNothing();
+            return httpMessageContext.doNothing();
         }
 
         if(!(request.getRequestURI().contains("oauth2") || request.getRequestURI().contains("signup"))) {
