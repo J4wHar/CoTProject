@@ -25,7 +25,7 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 
     @Override
     public void filter(ContainerRequestContext requestContext) {
-        if(!requestContext.getMethod().equals(HttpMethod.OPTIONS)){
+        if(requestContext.getMethod().equals(HttpMethod.OPTIONS)){
             return;
         }
 
