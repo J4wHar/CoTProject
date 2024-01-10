@@ -36,9 +36,9 @@ public class AlertResource {
     @Inject
     AlertRepository alertRepository;
 
-//    @Secured
+    @Secured
     @GET
-//    @RolesAllowed({"ADMIN", "USER"})
+    @RolesAllowed({"USER"})
     public Response scanForAlerts(@HeaderParam("Authorization") String authHeader) {
         try {
             String userEmail = extractUserEmailFromToken(authHeader);
