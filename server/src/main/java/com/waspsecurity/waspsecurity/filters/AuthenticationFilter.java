@@ -11,6 +11,7 @@ import jakarta.security.enterprise.authentication.mechanism.http.HttpAuthenticat
 import jakarta.security.enterprise.authentication.mechanism.http.HttpMessageContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.ws.rs.HttpMethod;
 import jakarta.ws.rs.Priorities;
 import jakarta.ws.rs.ext.Provider;
 
@@ -34,6 +35,10 @@ public class AuthenticationFilter implements HttpAuthenticationMechanism {
     @Override
     public AuthenticationStatus validateRequest(HttpServletRequest request, HttpServletResponse response,
                                                 HttpMessageContext httpMessageContext) {
+
+        if(request.getMethod().equals(HttpMethod.OPTIONS)){
+            httpMessageContext.doNothing();
+        }
 
         if(!(request.getRequestURI().contains("oauth2") || request.getRequestURI().contains("signup"))) {
             final String authorization = request.getHeader("Authorization");
