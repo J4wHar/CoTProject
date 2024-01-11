@@ -26,7 +26,16 @@ function sendCoordinates(coordinates) {
     const accessToken = localStorage.getItem('accessToken');
     const email = localStorage.getItem('email')
 
-    coordinates.add(email);
+    console.log(accessToken)
+
+    var body = {
+        "email": email,
+        "longitude": coordinates.longitude,
+        "latitude": coordinates.latitude
+    };
+
+
+    console.log(body);
 
     // Make a POST request to the endpoint
     fetch(endpoint, {
@@ -35,7 +44,7 @@ function sendCoordinates(coordinates) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`,
         },
-        body: JSON.stringify(coordinates),
+        body: JSON.stringify(body),
     })
         .then(response => {
             if (!response.ok) {
