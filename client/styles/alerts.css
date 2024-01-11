@@ -1,0 +1,18 @@
+
+#alertsContainer {
+    list-style-type: none;
+    padding: 0;
+}
+
+#alertsContainer li {
+    background-color: #363636; /* Dark gray background */
+    border: 1px solid #FFA500; /* Orange border */
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px; /* Rounded corners */
+    color: #FFFFFF; /* White text color */
+}
+
+h1 {
+    text-align: center;
+}

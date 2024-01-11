@@ -40,10 +40,17 @@ function signIn() {
             return response.json();
         })
         .then(data => {
-            console.log('Signup successful:', data);
+
             saveDataToLocalStorage(data);
-            //redirect to alert page
-            window.location.href = 'alerts.html';
+
+            var isAdmin = data.roles.includes("ADMIN");
+            var direction = "";
+            if(isAdmin){
+                direction = "admin.html";
+            }else{
+                direction = "alerts.html";
+            }
+            window.location.href = direction;
         })
         .catch(error => {
             console.error('Error during signup:', error);

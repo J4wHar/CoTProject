@@ -16,7 +16,7 @@ function fetchAlerts() {
             return response.json();
         })
         .then(data => {
-            console.log("hello done")
+            console.log(data[0]);
             displayAlerts(data);
         })
         .catch(error => {
@@ -34,7 +34,7 @@ function displayAlerts(alerts) {
         const ul = document.createElement('ul');
         alerts.forEach(alert => {
             const li = document.createElement('li');
-            li.textContent = alert.message;
+            li.textContent = "An abnormal behavior was detected at " + alert.timestamp;
             ul.appendChild(li);
         });
         alertsContainer.appendChild(ul);
