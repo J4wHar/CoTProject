@@ -34,7 +34,7 @@ function displayAlerts(alerts) {
         const ul = document.createElement('ul');
         alerts.forEach(alert => {
             const li = document.createElement('li');
-            li.textContent = JSON.stringify(alert, null, 2);
+            li.textContent = "An abnormal behavior was detected at " + alert.timestamp;
             ul.appendChild(li);
         });
         alertsContainer.appendChild(ul);
