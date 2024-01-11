@@ -45,7 +45,7 @@ public class MqttConnection {
             mqttConnectOptions.setUserName(username);
             mqttConnectOptions.setPassword(password.toCharArray());
             mqttConnectOptions.setConnectionTimeout(0);
-            mqttConnectOptions.setSocketFactory(null);
+            mqttConnectOptions.setSocketFactory(SSLSocketFactory.getDefault());
             client.connect(mqttConnectOptions);
             //subscribing to all topics
             client.subscribe("#");
