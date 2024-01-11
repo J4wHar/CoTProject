@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     // Replace 'your_pwa_files' with the actual path inside '/client'
-                    sh "sudo cp -r ${CLIENT_DIR}/ ${WILDFLY_HOME}/standalone/deployments/"
+                    sh "cp -r ${CLIENT_DIR}/ ${WILDFLY_HOME}/standalone/deployments/"
                 }
             }
         }
