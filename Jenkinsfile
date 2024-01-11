@@ -5,7 +5,7 @@ pipeline {
         WILDFLY_HOME = '/opt/wildfly'
         M3_HOME = '/opt/maven'
         PROJECT_DIR = 'server'
-        CLIENT_DIR = 'client'  // Assuming this is the path to your PWA files
+        CLIENT_DIR = 'client'  
     }
     
     stages {
@@ -32,7 +32,7 @@ pipeline {
         stage('Deploy PWA') {
             steps {
                 script {
-                    // Replace 'your_pwa_files' with the actual path inside '/client'
+                   
                     sh "cp -r ${CLIENT_DIR}/ ${WILDFLY_HOME}/standalone/deployments/"
                 }
             }
