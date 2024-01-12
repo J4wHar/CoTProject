@@ -1,0 +1,152 @@
+[
+  {
+    "id": "eb1e0cc3e9a1ef22",
+    "type": "tab",
+    "label": "Flow 1",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "0d97f4e785344980",
+    "type": "inject",
+    "z": "eb1e0cc3e9a1ef22",
+    "name": "detect-abnormal-behaviour",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "60",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "1",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 180,
+    "y": 580,
+    "wires": [
+      [
+        "582ec76295e0eb91"
+      ]
+    ]
+  },
+  {
+    "id": "582ec76295e0eb91",
+    "type": "exec",
+    "z": "eb1e0cc3e9a1ef22",
+    "command": "libcamera-vid --width 1280 --height 720 --framerate 30 -o /home/wasp/recorded-video.h264 -t 10000",
+    "addpay": "payload",
+    "append": "",
+    "useSpawn": "false",
+    "timer": "",
+    "winHide": false,
+    "oldrc": false,
+    "name": "",
+    "x": 540,
+    "y": 920,
+    "wires": [
+      [],
+      [
+        "fc2c785c48ae3659"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "fc2c785c48ae3659",
+    "type": "exec",
+    "z": "eb1e0cc3e9a1ef22",
+    "command": "python3 /home/wasp/abnormal-detection.py",
+    "addpay": "",
+    "append": "",
+    "useSpawn": "false",
+    "timer": "",
+    "winHide": false,
+    "oldrc": false,
+    "name": "",
+    "x": 630,
+    "y": 660,
+    "wires": [
+      [
+        "73c3306e0a517a81"
+      ],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "73c3306e0a517a81",
+    "type": "function",
+    "z": "eb1e0cc3e9a1ef22",
+    "name": "Construct JSON",
+    "func": "msg.payload = {\"image\": msg.payload};\nreturn msg;",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 900,
+    "y": 460,
+    "wires": [
+      [
+        "52fd9fc223989d46"
+      ]
+    ]
+  },
+  {
+    "id": "52fd9fc223989d46",
+    "type": "mqtt out",
+    "z": "eb1e0cc3e9a1ef22",
+    "name": "",
+    "topic": "topic/camera",
+    "qos": "1",
+    "retain": "",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "58fcadc217daa20c",
+    "x": 1110,
+    "y": 800,
+    "wires": []
+  },
+  {
+    "id": "58fcadc217daa20c",
+    "type": "mqtt-broker",
+    "name": "",
+    "broker": "wss://mqtt.waspsecurity.tech:8083",
+    "port": "1883",
+    "clientid": "",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "autoUnsubscribe": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthRetain": "false",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closeRetain": "false",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willRetain": "false",
+    "willPayload": "",
+    "willMsg": {},
+    "userProps": "",
+    "sessionExpiry": ""
+  }
+]
