@@ -1,9 +1,7 @@
 const singInEndpoint = 'http://localhost:8080/waspsecurity-1.0-SNAPSHOT/api/oauth2/token';
 
 function prepareData() {
-
-
-
+    
     const emailInput = document.getElementById("email-input");
     const passwordInput = document.getElementById("password-input");
 
@@ -34,6 +32,7 @@ function signIn() {
         body: prepareData(),
     })
         .then(response => {
+            console.log(response)
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }

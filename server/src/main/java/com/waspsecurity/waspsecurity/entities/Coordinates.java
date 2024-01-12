@@ -11,11 +11,11 @@ public class Coordinates {
     @Column
     private String email;
     @Column
-    private Long longitude;
+    private double longitude;
     @Column
-    private Long latitude;
+    private double latitude;
 
-    public Long getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
@@ -27,15 +27,15 @@ public class Coordinates {
         this.email = email;
     }
 
-    public void setLongitude(Long longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
-    public Long getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Long latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 }
