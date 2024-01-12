@@ -4,7 +4,8 @@ pipeline {
     environment {
         WILDFLY_HOME = '/opt/wildfly'
         M3_HOME = '/opt/maven'
-        PROJECT_DIR = 'smart_lighting'
+        PROJECT_DIR = 'server'
+        CLIENT_DIR = 'client'  
     }
     
     stages {
@@ -18,7 +19,7 @@ pipeline {
             }
         }
 
-        stage('Test') {
+        stage('Run Unit Tests') {
             steps {
                 dir(PROJECT_DIR) {
                     script {
@@ -27,14 +28,23 @@ pipeline {
                 }
             }
         }
-        stage('Deploy to WildFly') {
+
+        stage('Deploying PWA and Backend to WildFly') {
             steps {
                 dir(PROJECT_DIR) {
                     script {
-                        sh "$WILDFLY_HOME/bin/jboss-cli.sh --connect -u=\"admin\" -p=\"admin\"  --command=\"deploy --force target/smartlighting-1.0-SNAPSHOT.war\""
-                      
+                        sh "$WILDFLY_HOME/bin/jboss-cli.sh --connect -u=\"admin\" -p=\"admin\"  --command=\"deploy --force target/waspsecurity-1.0-SNAPSHOT.war\""
                     }
                 }
+            }
+        }
+    }
+    
+    post {
+        always {
+            script {
+                
+                sh "rm -rf ${PROJECT_DIR}/target"
             }
         }
     }
