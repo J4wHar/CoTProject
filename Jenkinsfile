@@ -28,17 +28,8 @@ pipeline {
                 }
             }
         }
-        
-        stage('Deploy PWA') {
-            steps {
-                script {
-                   
-                    sh "cp -r ${CLIENT_DIR}/ ${WILDFLY_HOME}/standalone/deployments/"
-                }
-            }
-        }
 
-        stage('Deploying Backend to WildFly') {
+        stage('Deploying PWA and Backend to WildFly') {
             steps {
                 dir(PROJECT_DIR) {
                     script {
@@ -48,6 +39,7 @@ pipeline {
             }
         }
     }
+    
     post {
         always {
             script {
