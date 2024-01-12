@@ -31,3 +31,8 @@ These are the technologies necessary to run this project:
 This is the used hardware to make this project:
 - Raspberry pi 4
 - Camera
+- 
+## SSL certificate 
+![ssl](sslTest.png)
+
+
