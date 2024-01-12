@@ -1,4 +1,4 @@
-const endpoint = 'http://localhost:8080/waspsecurity-1.0-SNAPSHOT/api/localization';
+const endpoint = 'https://api.waspsecurity.tech/waspsecurity-1.0-SNAPSHOT/api/localization';
 function getCurrentLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(

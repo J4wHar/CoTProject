@@ -1,4 +1,4 @@
-const singInEndpoint = 'http://localhost:8080/waspsecurity-1.0-SNAPSHOT/api/oauth2/token';
+const singInEndpoint = 'https://api.waspsecurity.tech/waspsecurity-1.0-SNAPSHOT/api/oauth2/token';
 
 function prepareData() {
     

@@ -1,4 +1,4 @@
-const alertsEndpoint = 'http://localhost:8080/waspsecurity-1.0-SNAPSHOT/api/alerts';
+const alertsEndpoint = 'https://api.waspsecurity.tech/waspsecurity-1.0-SNAPSHOT/api/alerts';
 
 function fetchAlerts() {
     const accessToken = localStorage.getItem('accessToken');

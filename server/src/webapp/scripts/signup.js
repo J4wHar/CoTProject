@@ -1,5 +1,5 @@
 // script.js
-const singUpEndpoint = 'http://localhost:8080/waspsecurity-1.0-SNAPSHOT/api/users/signup';
+const singUpEndpoint = 'https://api.waspsecurity.tech/waspsecurity-1.0-SNAPSHOT/api/users/signup';
 
 function prepareData() {
     const currentDate = new Date().toISOString();

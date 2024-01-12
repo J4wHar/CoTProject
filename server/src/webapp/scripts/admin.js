@@ -1,5 +1,5 @@
-const alertsEndpoint = 'http://localhost:8080/waspsecurity-1.0-SNAPSHOT/api/users';
-const addUserEndpoint = 'http://localhost:8080/waspsecurity-1.0-SNAPSHOT/api/users/add-user';
+const alertsEndpoint = 'https://api.waspsecurity.tech/waspsecurity-1.0-SNAPSHOT/api/users';
+const addUserEndpoint = 'https://api.waspsecurity.tech/waspsecurity-1.0-SNAPSHOT/api/users/add-user';
 
 
 function fetchUsers() {
